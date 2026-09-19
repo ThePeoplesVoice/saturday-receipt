@@ -1,0 +1,57 @@
+:root {
+  --ink: #1c1915;
+  --muted: #6b6458;
+  --paper: #f6f0e4;
+  --card: #fffaf1;
+  --line: #e4d8c4;
+  --gold: #b8862b;
+  --captured: #1f6b4a;
+  --missed: #8a3b1d;
+  --unknown: #6b6458;
+  --shadow: 0 10px 30px rgba(28, 25, 21, 0.08);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font: 16px/1.45 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+button, input, select, textarea { font: inherit; }
+a { color: var(--ink); }
+.wrap { max-width: 760px; margin: 0 auto; padding: 28px 18px 80px; }
+header.hero { padding: 12px 0 28px; }
+.kicker { letter-spacing: 0.16em; text-transform: uppercase; font-size: 11px; color: var(--gold); font-family: ui-sans-serif, system-ui, sans-serif; }
+h1 { font-size: clamp(28px, 6vw, 42px); line-height: 1.1; margin: 8px 0 12px; font-weight: 600; }
+.lede { color: var(--muted); max-width: 38em; }
+nav.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin: 22px 0 18px; }
+nav.tabs button { background: transparent; border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; color: var(--ink); }
+nav.tabs button.on { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 18px; margin: 0 0 16px; box-shadow: var(--shadow); }
+h2 { font-size: 20px; margin: 0 0 10px; }
+h3 { font-size: 16px; margin: 18px 0 8px; }
+label { display: block; font-size: 13px; color: var(--muted); margin: 10px 0 4px; font-family: ui-sans-serif, system-ui, sans-serif; }
+input, select, textarea { width: 100%; background: #fff; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; color: var(--ink); }
+textarea { min-height: 72px; resize: vertical; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+@media (max-width: 640px) { .row { grid-template-columns: 1fr; } }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+.btn { border: 0; border-radius: 999px; padding: 10px 16px; cursor: pointer; background: var(--ink); color: var(--paper); }
+.btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
+.btn.gold { background: var(--gold); color: #fff; }
+.btn.danger { background: transparent; color: var(--missed); border: 1px solid #e8c4b4; }
+.hint { font-size: 13px; color: var(--muted); margin: 6px 0 0; }
+.line-list { display: flex; flex-direction: column; gap: 10px; }
+.line { display: grid; gap: 8px; padding: 12px; border: 1px dashed var(--line); border-radius: 12px; }
+.totals { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.tot { background: #fff; border-radius: 12px; padding: 12px 14px; border: 1px solid var(--line); }
+.tot b { display: block; font-size: 22px; }
+.tot.captured b { color: var(--captured); }
+.tot.missed b { color: var(--missed); }
+.receipt { background: #fff; border: 1px solid var(--ink); border-radius: 4px; padding: 22px 20px; font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 13px; white-space: pre-wrap; line-height: 1.55; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 7px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-family: ui-sans-serif, system-ui, sans-serif; font-weight: 600; color: var(--muted); font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; }
+.pill { display: inline-block; font-size: 11px; border-radius: 999px; padding: 2px 8px; font-family: ui-sans-serif, system-ui, sans-serif; }
+.pill.captured { background: #e4f4ea; color: var(--captured); }
+.pill.missed { background: #f8e6dc; color: var(--missed); }
+.pill.unknown { background: #eeeae2; color: var(--unknown); }
+.rules li { margin: 0 0 8px; }
+footer { color: var(--muted); font-size: 13px; margin-top: 28px; }
+.banner { background: #fff3d6; border: 1px solid #e8d39a; color: #5c4a16; padding: 10px 12px; border-radius: 12px; font-size: 14px; margin-bottom: 16px; }
+.hidden { display: none; }
