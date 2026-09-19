@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Saturday Receipt — what you actually saved this week</title>
+  <meta name="description" content="Pilot. One job: show what you actually saved this week, in dollars, on things you already buy. Groceries and fuel. Perth first. No club. No token. No bank login." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><rect fill='%231c1915' width='64' height='64' rx='10'/><text x='32' y='42' text-anchor='middle' font-size='28' fill='%23e8c872'>$</text></svg>" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrap">
+    <header class="hero">
+      <div class="kicker">Pilot · Perth first · 19 Sep 2026</div>
+      <h1>Saturday Receipt</h1>
+      <p class="lede">Show me what I actually saved this week, in dollars, on things I already buy. Groceries and fuel. No club. No token. No bank login. Data stays on this phone.</p>
+    </header>
+    <div class="banner">Pilot week: last complete Saturday–Friday. A dollar only counts with a purchase, a paid price, a dated better number, and a source. Demo lines are labelled DEMO. They are not your money.</div>
+    <nav class="tabs" id="tabs">
+      <button data-tab="intake" class="on">This week</button>
+      <button data-tab="receipt">Saturday receipt</button>
+      <button data-tab="rules">Rules</button>
+      <button data-tab="pilot">Pilot pack</button>
+    </nav>
+    <section id="intake">
+      <div class="card">
+        <h2>Household</h2>
+        <div class="row">
+          <div><label for="name">Name or household</label><input id="name" placeholder="Shawn" /></div>
+          <div><label for="suburb">Suburb</label><input id="suburb" placeholder="Keysbrook / Armadale / Harrisdale" /></div>
+        </div>
+        <div class="row">
+          <div><label for="weekStart">Week starts (Saturday)</label><input id="weekStart" type="date" /></div>
+          <div><label for="radius">Fuel miss radius (km)</label><input id="radius" type="number" min="1" max="20" step="0.5" value="5" /></div>
+        </div>
+        <p class="hint">WA fuel better-price: look up the fill date on <a href="https://www.fuelwatch.wa.gov.au" target="_blank" rel="noopener">FuelWatch</a>, then type the cheaper station you would actually have used.</p>
+      </div>
+      <div class="card">
+        <h2>Grocery lines</h2>
+        <p class="hint">One row per item or docket saving. Captured = it was on your docket. Missed = same item, same week, a store you already use was cheaper, sourced.</p>
+        <div id="groceryList" class="line-list"></div>
+        <div class="actions"><button class="btn ghost" type="button" id="addGrocery">Add grocery line</button></div>
+      </div>
+      <div class="card">
+        <h2>Fuel fills</h2>
+        <p class="hint">Litres × cents per litre you paid. Missed dollars = litres × (paid minus FuelWatch better price within radius).</p>
+        <div id="fuelList" class="line-list"></div>
+        <div class="actions"><button class="btn ghost" type="button" id="addFuel">Add fuel fill</button></div>
+      </div>
+      <div class="actions">
+        <button class="btn gold" type="button" id="build">Build Saturday receipt</button>
+        <button class="btn ghost" type="button" id="demo">Load DEMO week</button>
+        <button class="btn danger" type="button" id="wipe">Clear this device</button>
+      </div>
+    </section>
+    <section id="receipt" class="hidden">
+      <div class="card">
+        <h2>The receipt</h2>
+        <div class="totals" id="totals"></div>
+        <div style="overflow-x:auto; margin: 16px 0;">
+          <table>
+            <thead><tr><th>When</th><th>What</th><th>Paid</th><th>Better</th><th>Saved</th><th>Column</th><th>Source</th></tr></thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+        <h3>Plain text (copy or print)</h3>
+        <div class="receipt" id="plain"></div>
+        <div class="actions">
+          <button class="btn" type="button" id="copy">Copy receipt</button>
+          <button class="btn ghost" type="button" id="print">Print</button>
+        </div>
+      </div>
+    </section>
+    <section id="rules" class="hidden">
+      <div class="card">
+        <h2>What a dollar is allowed to mean</h2>
+        <ol class="rules"><li>A purchase you made.</li><li>A price you paid.</li><li>A documented better number that existed that day.</li><li>A source and a date.</li></ol>
+        <h3>Two columns. Never mixed.</h3>
+        <p><strong>Captured</strong> — money that did not leave because a special or cheaper pump was used.</p>
+        <p><strong>Missed</strong> — money that left because a sourced cheaper option sat unused.</p>
+        <p><strong>Unknown</strong> — no source. Does not enter either total.</p>
+        <h3>Refused</h3>
+        <ul><li>Club discounts you did not use</li><li>Points that are not cash</li><li>Tokens, draws, badges, member counts</li><li>Bank passwords and “review your bills” onboarding</li><li>A second job</li></ul>
+        <h3>Fee rule (not asked in pilot)</h3>
+        <p>Ask only after two Saturday receipts exist. If captured dollars over four weeks do not beat four weeks of fee, the ask stays off.</p>
+      </div>
+    </section>
+    <section id="pilot" class="hidden">
+      <div class="card">
+        <h2>Launch pack</h2>
+        <p>This page <em>is</em> the pilot. Eight households. Groceries + fuel. Four weeks. No payment.</p>
+        <ol class="rules">
+          <li>Open this page on the phone that goes to the shop.</li>
+          <li>Each shop: add grocery lines from the docket. Specials on the docket = captured.</li>
+          <li>Each fill: add litres, cpl paid, station. Check FuelWatch the same day for a cheaper station inside 5 km. If yes, enter it as missed.</li>
+          <li>Saturday morning: tap <strong>Build Saturday receipt</strong>.</li>
+          <li>Send the plain-text receipt to Shawn / Ara if you want a second pair of eyes. You do not have to.</li>
+          <li>After week 2, say whether the Saturday number changed a decision.</li>
+        </ol>
+        <p class="hint">Privacy: everything is stored in this browser only (<code>localStorage</code>). Clearing the site data deletes the pilot. There is no server behind this page.</p>
+        <p class="hint">FuelWatch: <a href="https://www.fuelwatch.wa.gov.au" target="_blank" rel="noopener">fuelwatch.wa.gov.au</a></p>
+      </div>
+    </section>
+    <footer>Saturday Receipt v0.1 · ThePeoplesVoice / Ara · Pilot for things you already buy · Not financial advice · Not 2EZi</footer>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>
